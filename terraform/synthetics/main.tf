@@ -714,7 +714,12 @@ resource "datadog_synthetics_test" "python_org_downloads_backend" {
 
   request_definition {
     method = "GET"
-    url    = "https://lb.nyc1.psf.io/ftp/"
+    url    = "https://lb.nyc1.psf.io:20004/ftp/"
+  }
+
+  request_headers = {
+    "Fastly-Token" = var.fastly_token
+    "Host"         = "www.python.org"
   }
 
   assertion {
