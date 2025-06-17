@@ -22,7 +22,7 @@ resource "datadog_synthetics_test" "buildbot" {
   type      = "api"
   subtype   = "http"
   status    = "live"
-  locations = local.standard_locations
+  locations = local.reduced_locations
 
   request_definition {
     method = "GET"
@@ -160,7 +160,7 @@ resource "datadog_synthetics_test" "psf_members" {
   type      = "api"
   subtype   = "http"
   status    = "live"
-  locations = local.standard_locations
+  locations = local.reduced_locations
 
   request_definition {
     method = "GET"
@@ -450,49 +450,49 @@ resource "datadog_synthetics_test" "roundup" {
   tags = local.synthetics_tags
 }
 
-# resource "datadog_synthetics_test" "wiki" {
-#   name      = "Wiki"
-#   type      = "api"
-#   subtype   = "http"
-#   status    = "live"
-#   locations = local.reduced_locations
-#
-#   request_definition {
-#     method = "GET"
-#     url    = "https://wiki.python.org/moin/"
-#   }
-#
-#   assertion {
-#     type     = "responseTime"
-#     operator = "lessThan"
-#     target   = "5000"
-#   }
-#
-#   assertion {
-#     type     = local.standard_assertions.status_200.type
-#     operator = local.standard_assertions.status_200.operator
-#     target   = local.standard_assertions.status_200.target
-#   }
-#
-#   assertion {
-#     type     = "body"
-#     operator = "contains"
-#     target   = "FrontPage"
-#   }
-#
-#   options_list {
-#     tick_every           = local.default_options.tick_every
-#     min_failure_duration = 300
-#     min_location_failed  = local.default_options.min_location_failed
-#
-#     retry {
-#       count    = local.default_options.retry_count
-#       interval = local.default_options.retry_interval
-#     }
-#   }
-#
-#   tags = local.synthetics_tags
-# }
+resource "datadog_synthetics_test" "wiki" {
+  name      = "Wiki"
+  type      = "api"
+  subtype   = "http"
+  status    = "live"
+  locations = local.reduced_locations
+
+  request_definition {
+    method = "GET"
+    url    = "https://wiki.python.org/moin/"
+  }
+
+  assertion {
+    type     = "responseTime"
+    operator = "lessThan"
+    target   = "5000"
+  }
+
+  assertion {
+    type     = local.standard_assertions.status_200.type
+    operator = local.standard_assertions.status_200.operator
+    target   = local.standard_assertions.status_200.target
+  }
+
+  assertion {
+    type     = "body"
+    operator = "contains"
+    target   = "FrontPage"
+  }
+
+  options_list {
+    tick_every           = local.default_options.tick_every
+    min_failure_duration = 300
+    min_location_failed  = local.default_options.min_location_failed
+
+    retry {
+      count    = local.default_options.retry_count
+      interval = local.default_options.retry_interval
+    }
+  }
+
+  tags = local.synthetics_tags
+}
 
 resource "datadog_synthetics_test" "files_pythonhosted_org_backend_files" {
   name      = "files.pythonhosted.org - Backend Files"
@@ -784,7 +784,7 @@ resource "datadog_synthetics_test" "mail_python_org_smtp" {
   type      = "api"
   subtype   = "tcp"
   status    = "live"
-  locations = local.standard_locations
+  locations = local.reduced_locations
 
   request_definition {
     host = "mail.python.org"
@@ -887,95 +887,95 @@ resource "datadog_synthetics_test" "lb_1_nyc1_psf_io" {
   tags = local.synthetics_tags
 }
 
-# resource "datadog_synthetics_test" "hg_python_org" {
-#   name      = "hg.python.org (HTTPS)"
-#   type      = "api"
-#   subtype   = "http"
-#   status    = "live"
-#   locations = local.standard_locations
-#
-#   request_definition {
-#     method = "GET"
-#     url    = "https://hg.python.org/"
-#   }
-#
-#   assertion {
-#     type     = local.standard_assertions.response_time_3000.type
-#     operator = local.standard_assertions.response_time_3000.operator
-#     target   = local.standard_assertions.response_time_3000.target
-#   }
-#
-#   assertion {
-#     type     = local.standard_assertions.status_200.type
-#     operator = local.standard_assertions.status_200.operator
-#     target   = local.standard_assertions.status_200.target
-#   }
-#
-#   assertion {
-#     type     = local.standard_assertions.content_type_html_utf8.type
-#     property = local.standard_assertions.content_type_html_utf8.property
-#     operator = local.standard_assertions.content_type_html_utf8.operator
-#     target   = local.standard_assertions.content_type_html_utf8.target
-#   }
-#
-#   options_list {
-#     tick_every           = local.default_options.tick_every
-#     min_failure_duration = 0
-#     min_location_failed  = local.default_options.min_location_failed
-#
-#     retry {
-#       count    = local.default_options.retry_count
-#       interval = local.default_options.retry_interval
-#     }
-#   }
-#
-#   tags = local.synthetics_tags
-# }
+resource "datadog_synthetics_test" "hg_python_org" {
+  name      = "hg.python.org (HTTPS)"
+  type      = "api"
+  subtype   = "http"
+  status    = "live"
+  locations = local.reduced_locations
 
-# resource "datadog_synthetics_test" "python_speed" {
-#   name      = "python speed"
-#   type      = "api"
-#   subtype   = "http"
-#   status    = "live"
-#   locations = local.standard_locations
-#
-#   request_definition {
-#     method = "GET"
-#     url    = "https://speed.python.org/changes/"
-#   }
-#
-#   assertion {
-#     type     = local.standard_assertions.response_time_3000.type
-#     operator = local.standard_assertions.response_time_3000.operator
-#     target   = local.standard_assertions.response_time_3000.target
-#   }
-#
-#   assertion {
-#     type     = local.standard_assertions.status_200.type
-#     operator = local.standard_assertions.status_200.operator
-#     target   = local.standard_assertions.status_200.target
-#   }
-#
-#   assertion {
-#     type     = local.standard_assertions.content_type_html_utf8.type
-#     property = local.standard_assertions.content_type_html_utf8.property
-#     operator = local.standard_assertions.content_type_html_utf8.operator
-#     target   = local.standard_assertions.content_type_html_utf8.target
-#   }
-#
-#   options_list {
-#     tick_every           = local.default_options.tick_every
-#     min_failure_duration = 0
-#     min_location_failed  = local.default_options.min_location_failed
-#
-#     retry {
-#       count    = local.default_options.retry_count
-#       interval = local.default_options.retry_interval
-#     }
-#   }
-#
-#   tags = local.synthetics_tags
-# }
+  request_definition {
+    method = "GET"
+    url    = "https://hg.python.org/"
+  }
+
+  assertion {
+    type     = local.standard_assertions.response_time_3000.type
+    operator = local.standard_assertions.response_time_3000.operator
+    target   = local.standard_assertions.response_time_3000.target
+  }
+
+  assertion {
+    type     = local.standard_assertions.status_200.type
+    operator = local.standard_assertions.status_200.operator
+    target   = local.standard_assertions.status_200.target
+  }
+
+  assertion {
+    type     = local.standard_assertions.content_type_html_utf8.type
+    property = local.standard_assertions.content_type_html_utf8.property
+    operator = local.standard_assertions.content_type_html_utf8.operator
+    target   = local.standard_assertions.content_type_html_utf8.target
+  }
+
+  options_list {
+    tick_every           = local.default_options.tick_every
+    min_failure_duration = 0
+    min_location_failed  = local.default_options.min_location_failed
+
+    retry {
+      count    = local.default_options.retry_count
+      interval = local.default_options.retry_interval
+    }
+  }
+
+  tags = local.synthetics_tags
+}
+
+resource "datadog_synthetics_test" "python_speed" {
+  name      = "python speed"
+  type      = "api"
+  subtype   = "http"
+  status    = "live"
+  locations = local.reduced_locations
+
+  request_definition {
+    method = "GET"
+    url    = "https://speed.python.org/changes/"
+  }
+
+  assertion {
+    type     = local.standard_assertions.response_time_3000.type
+    operator = local.standard_assertions.response_time_3000.operator
+    target   = local.standard_assertions.response_time_3000.target
+  }
+
+  assertion {
+    type     = local.standard_assertions.status_200.type
+    operator = local.standard_assertions.status_200.operator
+    target   = local.standard_assertions.status_200.target
+  }
+
+  assertion {
+    type     = local.standard_assertions.content_type_html_utf8.type
+    property = local.standard_assertions.content_type_html_utf8.property
+    operator = local.standard_assertions.content_type_html_utf8.operator
+    target   = local.standard_assertions.content_type_html_utf8.target
+  }
+
+  options_list {
+    tick_every           = local.default_options.tick_every
+    min_failure_duration = 0
+    min_location_failed  = local.default_options.min_location_failed
+
+    retry {
+      count    = local.default_options.retry_count
+      interval = local.default_options.retry_interval
+    }
+  }
+
+  tags = local.synthetics_tags
+}
 
 resource "datadog_synthetics_test" "pypy_speed" {
   name      = "pypy speed"
