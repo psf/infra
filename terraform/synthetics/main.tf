@@ -627,9 +627,16 @@ resource "datadog_synthetics_test" "files_pythonhosted_org_cdn_redirects" {
   }
 
   assertion {
-    type     = local.standard_assertions.status_200.type
-    operator = local.standard_assertions.status_200.operator
-    target   = local.standard_assertions.status_200.target
+    type     = local.standard_assertions.status_302.type
+    operator = local.standard_assertions.status_302.operator
+    target   = local.standard_assertions.status_302.target
+  }
+
+  assertion {
+    type     = "header"
+    property = "location"
+    operator = "is"
+    target   = "https://files.pythonhosted.org/packages/bb/69/a9fb8adbbc0a7b0c865e828389bafad5225f3ca098f8d444c3d6400ce6f8/clandestined-1.0.1.tar.gz"
   }
 
   options_list {
