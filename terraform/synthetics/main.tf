@@ -820,7 +820,7 @@ resource "datadog_synthetics_test" "lb_0_nyc1_psf_io" {
 
   request_definition {
     method = "GET"
-    url    = "https://lb-0.nyc1.psf.io/_haproxy_status"
+    url    = "http://lb-0.nyc1.psf.io:20000/_haproxy_status"
   }
 
   assertion {
@@ -858,7 +858,7 @@ resource "datadog_synthetics_test" "lb_1_nyc1_psf_io" {
 
   request_definition {
     method = "GET"
-    url    = "https://lb-1.nyc1.psf.io/_haproxy_status"
+    url    = "http://lb-1.nyc1.psf.io:20000/_haproxy_status"
   }
 
   assertion {
