@@ -111,8 +111,8 @@ locals {
     content_type_html_utf8 = {
       type     = "header"
       property = "content-type"
-      operator = "is"
-      target   = "text/html; charset=utf-8"
+      operator = "matches"
+      target   = "/text\\/html;(\\ )?charset=utf-8/i"
     }
   }
 }

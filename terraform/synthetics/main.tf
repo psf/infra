@@ -627,9 +627,16 @@ resource "datadog_synthetics_test" "files_pythonhosted_org_cdn_redirects" {
   }
 
   assertion {
-    type     = local.standard_assertions.status_200.type
-    operator = local.standard_assertions.status_200.operator
-    target   = local.standard_assertions.status_200.target
+    type     = local.standard_assertions.status_302.type
+    operator = local.standard_assertions.status_302.operator
+    target   = local.standard_assertions.status_302.target
+  }
+
+  assertion {
+    type     = "header"
+    property = "location"
+    operator = "is"
+    target   = "https://files.pythonhosted.org/packages/bb/69/a9fb8adbbc0a7b0c865e828389bafad5225f3ca098f8d444c3d6400ce6f8/clandestined-1.0.1.tar.gz"
   }
 
   options_list {
@@ -721,9 +728,10 @@ resource "datadog_synthetics_test" "python_org_downloads_backend" {
   }
 
   options_list {
-    tick_every           = local.default_options.tick_every
-    min_failure_duration = 0
-    min_location_failed  = local.default_options.min_location_failed
+    tick_every                      = local.default_options.tick_every
+    min_failure_duration            = 0
+    min_location_failed             = local.default_options.min_location_failed
+    ignore_server_certificate_error = true
 
     retry {
       count    = local.default_options.retry_count
@@ -820,7 +828,7 @@ resource "datadog_synthetics_test" "lb_0_nyc1_psf_io" {
 
   request_definition {
     method = "GET"
-    url    = "https://lb-0.nyc1.psf.io/_haproxy_status"
+    url    = "http://lb-0.nyc1.psf.io:20000/_haproxy_status"
   }
 
   assertion {
@@ -858,7 +866,7 @@ resource "datadog_synthetics_test" "lb_1_nyc1_psf_io" {
 
   request_definition {
     method = "GET"
-    url    = "https://lb-1.nyc1.psf.io/_haproxy_status"
+    url    = "http://lb-1.nyc1.psf.io:20000/_haproxy_status"
   }
 
   assertion {
