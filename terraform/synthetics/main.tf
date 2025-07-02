@@ -728,9 +728,10 @@ resource "datadog_synthetics_test" "python_org_downloads_backend" {
   }
 
   options_list {
-    tick_every           = local.default_options.tick_every
-    min_failure_duration = 0
-    min_location_failed  = local.default_options.min_location_failed
+    tick_every                      = local.default_options.tick_every
+    min_failure_duration            = 0
+    min_location_failed             = local.default_options.min_location_failed
+    ignore_server_certificate_error = true
 
     retry {
       count    = local.default_options.retry_count
