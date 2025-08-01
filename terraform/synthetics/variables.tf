@@ -62,6 +62,18 @@ locals {
     "gcp:us-west1"
   ]
 
+  americas_locations = [
+    "aws:us-east-1",
+    "aws:us-east-2",
+    "aws:us-west-1",
+    "aws:us-west-2",
+    "aws:sa-east-1",
+    "azure:eastus",
+    "gcp:us-east4",
+    "gcp:us-south1",
+    "gcp:us-west1"
+  ]
+
   # default options that most tests share
   default_options = {
     tick_every          = 60

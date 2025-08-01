@@ -793,7 +793,7 @@ resource "datadog_synthetics_test" "mail_python_org_smtp" {
   type      = "api"
   subtype   = "tcp"
   status    = "live"
-  locations = local.standard_locations
+  locations = local.americas_locations
 
   request_definition {
     host = "mail.python.org"
