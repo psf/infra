@@ -63,6 +63,7 @@ locals {
   ]
 
   americas_locations = [
+    "aws:ca-central-1",
     "aws:us-east-1",
     "aws:us-east-2",
     "aws:us-west-1",
@@ -71,7 +72,8 @@ locals {
     "azure:eastus",
     "gcp:us-east4",
     "gcp:us-south1",
-    "gcp:us-west1"
+    "gcp:us-west1",
+    "gcp:us-west2"
   ]
 
   # default options that most tests share
