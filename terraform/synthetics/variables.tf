@@ -79,7 +79,7 @@ locals {
   # default options that most tests share
   default_options = {
     tick_every          = 60
-    min_location_failed = 1
+    min_location_failed = 5
     retry_count         = 1
     retry_interval      = 300
   }
