@@ -31,3 +31,7 @@ module "synthetics" {
   tags         = local.tags
   fastly_token = var.fastly_token
 }
+
+module "aws-iam" {
+  source = "./aws-iam"
+}
