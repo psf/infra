@@ -203,7 +203,7 @@ resource "datadog_synthetics_test" "pycon_us" {
 
   request_definition {
     method = "GET"
-    url    = "https://us.pycon.org/2025/"
+    url    = "https://us.pycon.org/2026/"
   }
 
   assertion {
