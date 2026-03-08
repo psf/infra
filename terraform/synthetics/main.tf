@@ -203,7 +203,7 @@ resource "datadog_synthetics_test" "pycon_us" {
 
   request_definition {
     method = "GET"
-    url    = "https://us.pycon.org/2025/"
+    url    = "https://us.pycon.org/2026/"
   }
 
   assertion {
@@ -369,7 +369,7 @@ resource "datadog_synthetics_test" "python_org_backends" {
 
   request_definition {
     method = "GET"
-    url    = "https://pythondotorg.ingress.us-east-2.psfhosted.computer/_health"
+    url    = "https://psf-pythondotorg-pythondotorg-b0dbd19e-web.psfhosted.net/_health"
   }
 
   assertion {
